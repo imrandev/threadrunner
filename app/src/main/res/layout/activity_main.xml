@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.main.MainActivity">
+
+    <Button
+        android:text="START"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/center_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onStart"/>
+
+    <View
+        android:layout_centerInParent="true"
+        android:id="@+id/center_point"
+        android:layout_margin="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <Button
+        android:text="STOP"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/center_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onStop"/>
+
+    <TextView
+        android:id="@+id/update_view"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
