@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 public class MainPresenter implements MainContract.Presenter {
 
     private MainContract.View mMainView;
-    private HandlerThread mHandlerThread;
+    private HandlerThread mMessageThread;
 
     MainPresenter(MainContract.View mMainView) {
         this.mMainView = mMainView;
@@ -22,7 +22,7 @@ public class MainPresenter implements MainContract.Presenter {
         try {
             onStopThread();
             MessageAsyncTask messageAsyncTask =  new MessageAsyncTask(mMainView);
-            mHandlerThread = messageAsyncTask.execute().get();
+            mMessageThread = messageAsyncTask.execute().get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -32,9 +32,9 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onStopThread() {
-        if (mHandlerThread != null){
-            if (mHandlerThread.isAlive()){
-                mHandlerThread.quit();
+        if (mMessageThread != null){
+            if (mMessageThread.isAlive()){
+                mMessageThread.quit();
                 mMainView.updateMessage("Thread is stopped");
                 Log.e("ThreadRunner", "Thread is stopped!");
             }

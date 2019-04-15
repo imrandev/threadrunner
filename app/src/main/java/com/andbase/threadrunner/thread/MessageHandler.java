@@ -10,11 +10,11 @@ import com.andbase.threadrunner.constant.Constant;
 
 import static com.andbase.threadrunner.constant.Constant.MSG_UPDATE;
 
-public class MessageThread extends Handler {
+public class MessageHandler extends Handler {
 
     private Handler.Callback onHandlerCallback;
 
-    public MessageThread(Looper looper, Callback onHandlerCallback) {
+    public MessageHandler(Looper looper, Callback onHandlerCallback) {
         super(looper);
         this.onHandlerCallback = onHandlerCallback;
     }

@@ -7,7 +7,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.andbase.threadrunner.thread.MessageRunner;
-import com.andbase.threadrunner.thread.MessageThread;
+import com.andbase.threadrunner.thread.MessageHandler;
 import com.andbase.threadrunner.ui.main.MainContract;
 
 import static com.andbase.threadrunner.constant.Constant.MSG_UPDATE;
@@ -23,14 +23,14 @@ public class MessageAsyncTask extends AsyncTask<Void, Void, HandlerThread> {
 
     @Override
     protected HandlerThread doInBackground(Void... voids) {
-        HandlerThread mHandlerThread = new HandlerThread("HandlerThread");
-        mHandlerThread.start();
+        HandlerThread mMessageThread = new HandlerThread("HandlerThread");
+        mMessageThread.start();
         showMessage("Thread has started to run");
 
-        MessageThread mMessageThread = new MessageThread(mHandlerThread.getLooper(), onHandlerCallback);
-        MessageRunner messageRunner = new MessageRunner(mMessageThread);
-        mMessageThread.postDelayed(messageRunner, 1000);
-        return mHandlerThread;
+        MessageHandler mMessageHandler = new MessageHandler(mMessageThread.getLooper(), onHandlerCallback);
+        MessageRunner messageRunner = new MessageRunner(mMessageHandler);
+        mMessageHandler.postDelayed(messageRunner, 1000);
+        return mMessageThread;
     }
 
     private Handler.Callback onHandlerCallback

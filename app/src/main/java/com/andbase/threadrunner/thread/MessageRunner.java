@@ -6,16 +6,16 @@ import com.andbase.threadrunner.constant.Constant;
 
 public class MessageRunner implements Runnable {
 
-    private MessageThread messageThread;
+    private MessageHandler messageHandler;
 
-    public MessageRunner(MessageThread messageThread) {
-        this.messageThread = messageThread;
+    public MessageRunner(MessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
     }
 
     @Override
     public void run() {
         Message message = new Message();
         message.what = Constant.MSG_UPDATE;
-        messageThread.handleMessage(message);
+        messageHandler.handleMessage(message);
     }
 }
